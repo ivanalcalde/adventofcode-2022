@@ -11,6 +11,22 @@ defmodule Adventofcode2022.Day01.CountingCalories do
     |> Enum.max_by(fn {_, total} -> total end)
   end
 
+  @spec get_elfs_with_more_calories(non_neg_integer) :: list({elf_number, total})
+  def get_elfs_with_more_calories(take_n) do
+    get_totals_by_elf()
+    |> Enum.sort_by(fn {_, total} -> total end)
+    |> Enum.reverse()
+    |> Enum.take(take_n)
+  end
+
+  @spec get_total_of_elfs_with_more_calories(non_neg_integer) :: non_neg_integer
+  def get_total_of_elfs_with_more_calories(take_n) do
+    take_n
+    |> get_elfs_with_more_calories()
+    |> Enum.map(fn {_, total} -> total end)
+    |> Enum.sum()
+  end
+
   @spec get_elf_total_calories(elf_number) :: {:ok, total} | {:error, String.t}
   def get_elf_total_calories(n) do
     case Enum.find(get_totals_by_elf(), fn {elf_number, _} -> elf_number == n end) do
