@@ -1,5 +1,5 @@
 defmodule Adventofcode2022.Day01.CountingCalories do
-  @input_file_path Path.join(__DIR__, "input.txt")
+  @input_file_path Path.join(__DIR__, "input2.txt")
 
   @type elf_number :: integer
   @type lines :: list(integer)
