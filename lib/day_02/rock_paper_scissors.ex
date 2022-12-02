@@ -1,4 +1,5 @@
 defmodule Adventofcode2022.Day02.RockPaperScissors do
+  @type strategy           :: :one | :two
   @type move               :: :ROCK | :PAPER | :SCISSORS
   @type move_encrypted     :: :A | :B | :C | :X | :Y | :Z
   @type points_from_move   :: 1 | 2 | 3
@@ -9,10 +10,10 @@ defmodule Adventofcode2022.Day02.RockPaperScissors do
   @type round_points       :: {player_points, player_points}
   @type finished_round     :: {round_encrypted, round, round_points}
 
-  @spec get_total_scores(String.t) :: {integer, integer}
-  def get_total_scores(input) do
+  @spec get_total_scores(String.t, strategy) :: {integer, integer}
+  def get_total_scores(input, strategy) do
     input
-    |> play()
+    |> play(strategy)
     |> Enum.reduce({0, 0}, fn {_, _, {opponent_points, my_points}}, {opponent_acc, my_acc} -> 
       {opponent_points_from_move, opponent_points_from_battle} = opponent_points 
       {my_points_from_move, my_points_from_battle} = my_points 
@@ -24,17 +25,17 @@ defmodule Adventofcode2022.Day02.RockPaperScissors do
     end)
   end
 
-  @spec play(String.t) :: list(finished_round)
-  def play(input) do
+  @spec play(String.t, strategy) :: list(finished_round)
+  def play(input, strategy) do
     input
     |> to_input_rounds()
     |> Enum.map(&to_round/1)
-    |> Enum.map(&play_round/1)
+    |> Enum.map(&play_round(&1, strategy))
   end
 
-  @spec play_round(round_encrypted) :: finished_round
-  defp play_round(round_encrypted) do
-    round = decrypt_round(round_encrypted)
+  @spec play_round(round_encrypted, strategy) :: finished_round
+  defp play_round(round_encrypted, strategy) do
+    round = decrypt_round(round_encrypted, strategy)
     round_points = calculate_round_points(round)
 
     {
@@ -99,12 +100,16 @@ defmodule Adventofcode2022.Day02.RockPaperScissors do
     end
   end
 
-  @spec decrypt_round(round_encrypted) :: round
-  defp decrypt_round({opponent_move_encrypted, my_move_encrypted}) do
-    {
-      decrypt_move(opponent_move_encrypted),
+  @spec decrypt_round(round_encrypted, strategy) :: round
+  defp decrypt_round({opponent_move_encrypted, my_move_encrypted}, strategy) do
+    opponent_move = decrypt_move(opponent_move_encrypted)
+    my_move = if strategy == :one do
       decrypt_move(my_move_encrypted)
-    }
+    else
+      decrypt_move_by_outcome(my_move_encrypted, opponent_move)
+    end
+
+    { opponent_move, my_move }
   end
 
   @spec decrypt_move(move_encrypted) :: move
@@ -119,5 +124,30 @@ defmodule Adventofcode2022.Day02.RockPaperScissors do
   }
   def decrypt_move(move_encrypted) do
     Map.get(@moves_decryption_map, move_encrypted) 
+  end
+
+  @spec decrypt_move_by_outcome(move_encrypted, move) :: move
+
+  @outcome_encription_map %{
+    X: :loss,
+    Y: :draw,
+    Z: :win
+  }
+  def decrypt_move_by_outcome(move_encrypted, move) do
+    outcome = Map.get(@outcome_encription_map, move_encrypted)
+
+    case outcome do
+      :draw -> move
+      :loss -> case move do
+        :ROCK     -> :SCISSORS
+        :PAPER    -> :ROCK
+        :SCISSORS -> :PAPER 
+      end
+      :win -> case move do
+        :ROCK     -> :PAPER
+        :PAPER    -> :SCISSORS
+        :SCISSORS -> :ROCK
+      end
+    end
   end
 end
