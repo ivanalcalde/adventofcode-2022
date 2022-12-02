@@ -3,6 +3,14 @@ defmodule Adventofcode2022.Day02.RockPaperScissorsTest do
 
   alias Adventofcode2022.Day02.RockPaperScissors
 
+  test "returns my total score (from input.txt)" do
+    input = File.read!(Path.join(__DIR__, "./input.txt")) 
+
+    {_opponent_score, my_score} = RockPaperScissors.get_total_scores(input)
+
+    assert my_score == 10404
+  end
+
   test "returns my total score" do
     {_opponent_score, my_score} =
       """
