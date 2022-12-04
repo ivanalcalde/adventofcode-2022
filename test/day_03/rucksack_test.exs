@@ -13,7 +13,7 @@ defmodule Adventofcode2022.Day03.RucksackTest do
       ttgJtRGJQctTZtZT
       CrZsJsPPZsGzwwsLwLmpwMDw
       """
-      |> Rucksack.process_input()
+      |> Rucksack.get_priority_maps()
 
     assert result == [
       %{"p" => 16}, %{"L" => 38}, %{"P" => 42}, %{"v" => 22}, %{"t" => 20}, %{"s" => 19}
@@ -35,9 +35,30 @@ defmodule Adventofcode2022.Day03.RucksackTest do
     assert result == 157
   end
 
+  test "get the priority badges total of the input" do
+    result =
+      """
+      vJrwpWtwJgWrhcsFMMfFFhFp
+      jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+      PmmdzqPrVvPwwTWBwg
+      wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+      ttgJtRGJQctTZtZT
+      CrZsJsPPZsGzwwsLwLmpwMDw
+      """
+      |> Rucksack.get_priority_badges_total()
+
+    assert result == 70
+  end
+
   test "get the priority total of the input file" do
     input = File.read!(Path.join(__DIR__, "./input.txt"))
 
     assert Rucksack.get_input_priority_total(input) == 7701
+  end
+
+  test "get the priority badges total of the input file" do
+    input = File.read!(Path.join(__DIR__, "./input.txt"))
+
+    assert Rucksack.get_priority_badges_total(input) == 2644
   end
 end
