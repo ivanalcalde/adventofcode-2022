@@ -20,6 +20,6 @@
 
 ## Day 4 - Camp Cleanup 🏕️ 🧹
 
-- [Rucksack Reorganization](https://adventofcode.com/2022/day/4)
+- [Camp Cleanup](https://adventofcode.com/2022/day/4)
 - [Solution](./lib/day_04)
 - [Tests](./test/day_04)
