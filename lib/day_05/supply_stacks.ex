@@ -7,11 +7,9 @@ defmodule Adventofcode2022.Day05.SupplyStacks do
   @type stacks        :: [stack_id: stack]
   @type move_commands :: list(move_command)
 
-  @spec process_input(input) :: stacks
+  @spec process_input(input) :: {stacks, move_commands}
   def process_input(input) do
-    {stacks, move_commands} = parse_input(input)
-
-    update_stacks_move_items(stacks, move_commands)
+    parse_input(input)
   end
 
   @spec get_code_message(stacks) :: String.t
@@ -70,16 +68,18 @@ defmodule Adventofcode2022.Day05.SupplyStacks do
     end
   end
 
-  def update_stacks_move_items(stacks, move_commands) do
+  def update_stacks_move_items(stacks, move_commands, move_with_crate_mover_9001 \\ false) do
     Enum.reduce(move_commands, stacks, fn {qty, from_id, to_id}, stacks ->
       from_stack = Keyword.get(stacks, from_id, [])
       to_stack = Keyword.get(stacks, to_id, [])
 
       {items_to_move, from_stack} = Enum.split(from_stack, qty)
 
+      items_to_move = if move_with_crate_mover_9001, do: items_to_move, else: Enum.reverse(items_to_move)
+
       stacks
       |> Keyword.put(from_id, from_stack)
-      |> Keyword.put(to_id, Enum.reverse(items_to_move) ++ to_stack)
+      |> Keyword.put(to_id, items_to_move ++ to_stack)
     end)
   end
 
