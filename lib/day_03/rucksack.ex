@@ -89,17 +89,15 @@ defmodule Adventofcode2022.Day03.Rucksack do
     Enum.find_index(@items, & &1 == item) + 1
   end
 
-  @spec get_rucksacks(input_line) :: {rucksack, rucksack}
-  def get_rucksacks(input_line) do
-    items = get_items(input_line)
-    len = length(items)
-    middle = div(len, 2)
+  @spec middle_split(String.t) :: {String.t, String.t}
+  def middle_split(str) do
+    middle_index = div(String.length(str), 2)
 
-    rucksack1 = Enum.slice(items, 0, middle)
-    rucksack2 = Enum.slice(items, middle, len)
-
-    {Enum.join(rucksack1), Enum.join(rucksack2)}
+    String.split_at(str, middle_index)
   end
+
+  @spec get_rucksacks(input_line) :: {rucksack, rucksack}
+  def get_rucksacks(input_line), do: middle_split(input_line)
 
   @spec in_rucksack?(item, rucksack) :: boolean
   def in_rucksack?(item, rucksack), do: item in get_items(rucksack)

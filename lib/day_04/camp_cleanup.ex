@@ -11,6 +11,7 @@ defmodule Adventofcode2022.Day04.CampCleanup do
     Enum.filter(assignments, & assignment_diff(&1) == [])
   end
 
+  @spec find_assignments_with_overlap(list(assignment)) :: list(assignment)
   def find_assignments_with_overlap(assignments) do
     Enum.filter(assignments, fn assignment -> 
       area_ids = assignment_sum(assignment)
