@@ -23,3 +23,9 @@
 - [Camp Cleanup](https://adventofcode.com/2022/day/4)
 - [Solution](./lib/day_04)
 - [Tests](./test/day_04)
+
+## Day 5 - Supply Stacks 📚📚
+
+- [Supply Stacks](https://adventofcode.com/2022/day/5)
+- [Solution](./lib/day_05)
+- [Tests](./test/day_05)
