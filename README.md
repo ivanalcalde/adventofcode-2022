@@ -29,3 +29,9 @@
 - [Supply Stacks](https://adventofcode.com/2022/day/5)
 - [Solution](./lib/day_05)
 - [Tests](./test/day_05)
+
+## Day 6 - Tunning Trouble 📡 📶
+
+- [Tunning Trouble](https://adventofcode.com/2022/day/6)
+- [Solution](./lib/day_06)
+- [Tests](./test/day_06)
