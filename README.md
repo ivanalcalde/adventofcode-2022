@@ -35,3 +35,9 @@
 - [Tunning Trouble](https://adventofcode.com/2022/day/6)
 - [Solution](./lib/day_06)
 - [Tests](./test/day_06)
+
+## Day 7 - No Space Left On Device 📂 💾
+
+- [No Space Left On Device](https://adventofcode.com/2022/day/7)
+- [Solution](./lib/day_07)
+- [Tests](./test/day_07)
