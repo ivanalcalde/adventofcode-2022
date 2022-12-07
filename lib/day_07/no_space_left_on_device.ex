@@ -1,4 +1,6 @@
 defmodule Adventofcode2022.Day07.NoSpaceLeftOnDevice do
+  @total_space_available 70_000_000
+
   def parse(input) do
     lines = String.split(input, "\n", trim: true)
 
@@ -15,6 +17,27 @@ defmodule Adventofcode2022.Day07.NoSpaceLeftOnDevice do
     end)
 
     dirs
+  end
+
+  def dirs_will_allow_new_allocation_after_removal(dirs, space_needed) do
+    list_dirs_with_total_size(dirs)
+    |> Map.filter(fn {_k, v} -> v >= space_needed end)
+    |> Map.to_list()
+    |> Enum.sort_by(fn {_k, v} -> v end)
+  end
+
+  def total_space_needed_for_allocation(dirs, new_space_to_allocate) do
+    diff = @total_space_available - (total_space_used(dirs) + new_space_to_allocate)
+
+    if diff < 0 do
+      abs(diff)
+    else
+      0
+    end
+  end
+
+  def total_space_used(dirs) do
+    Map.get(list_dirs_with_total_size(dirs), "/", 0)
   end
 
   def list_dirs_with_total_size(dirs) do
