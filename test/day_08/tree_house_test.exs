@@ -19,4 +19,21 @@ defmodule Adventofcode2022.Day08.TreeHouseTest do
 
     assert TreeHouse.get_total_visible_trees(input) == 1792
   end
+
+  test "returns the max score" do
+    input = """
+      30373
+      25512
+      65332
+      33549
+      35390
+      """
+    assert TreeHouse.get_max_score(input) == 8
+  end
+
+  test "returns the max score (input file)" do
+    input = File.read!(Path.join(__DIR__, "./input.txt"))
+
+    assert TreeHouse.get_max_score(input) == 334880
+  end
 end
