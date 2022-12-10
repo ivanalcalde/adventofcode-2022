@@ -41,3 +41,15 @@
 - [No Space Left On Device](https://adventofcode.com/2022/day/7)
 - [Solution](./lib/day_07)
 - [Tests](./test/day_07)
+
+## Day 8 - Treetop Tree House 🌲❌🌲
+
+- [Treetop Tree House](https://adventofcode.com/2022/day/8)
+- [Solution](./lib/day_08)
+- [Tests](./test/day_08)
+
+## Day 9 - Rope Bridge 🪢🪢🪢
+
+- [Rope Bridge](https://adventofcode.com/2022/day/9)
+- [Solution](./lib/day_09)
+- [Tests](./test/day_09)
