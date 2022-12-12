@@ -27,4 +27,22 @@ defmodule Adventofcode2022.Day10.CathodeRayTubeTest do
 
     assert signals |> Enum.sum() == 13480
   end
+
+  # @tag :skip
+  test "crt renders pixels (input_1.txt)" do
+    input = File.read!(Path.join(__DIR__, "./input_1.txt"))
+
+    commands = CathodeRayTube.parse_commands(input)
+
+    CathodeRayTube.crt_render(commands)
+  end
+
+  # @tag :skip
+  test "crt renders pixels (input_2.txt)" do
+    input = File.read!(Path.join(__DIR__, "./input_2.txt"))
+
+    commands = CathodeRayTube.parse_commands(input)
+
+    CathodeRayTube.crt_render(commands)
+  end
 end
