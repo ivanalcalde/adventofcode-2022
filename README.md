@@ -53,3 +53,9 @@
 - [Rope Bridge](https://adventofcode.com/2022/day/9)
 - [Solution](./lib/day_09)
 - [Tests](./test/day_09)
+
+## Day 10 - Cathode Ray Tube 📺
+
+- [Cathode Ray Tube](https://adventofcode.com/2022/day/10)
+- [Solution](./lib/day_10)
+- [Tests](./test/day_10)
