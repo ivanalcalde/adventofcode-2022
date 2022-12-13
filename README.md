@@ -59,3 +59,9 @@
 - [Cathode Ray Tube](https://adventofcode.com/2022/day/10)
 - [Solution](./lib/day_10)
 - [Tests](./test/day_10)
+
+## Day 11 - Monkey In The Middle 🙈🐒🙉
+
+- [Monkey In The Middle](https://adventofcode.com/2022/day/11)
+- [Solution](./lib/day_11)
+- [Tests](./test/day_11)
