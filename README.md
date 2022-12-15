@@ -65,3 +65,9 @@
 - [Monkey In The Middle](https://adventofcode.com/2022/day/11)
 - [Solution](./lib/day_11)
 - [Tests](./test/day_11)
+
+## Day 12 - Hill Climbing Algorithm 🧗🏔️
+
+- [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12)
+- [Solution](./lib/day_12)
+- [Tests](./test/day_12)
